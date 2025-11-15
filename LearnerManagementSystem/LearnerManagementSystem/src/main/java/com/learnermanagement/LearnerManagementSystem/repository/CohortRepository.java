@@ -3,9 +3,8 @@ package com.learnermanagement.LearnerManagementSystem.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.learnermanagement.LearnerManagementSystem.entity.Learner;
+import com.learnermanagement.LearnerManagementSystem.entity.Cohort;
 
 @Repository
-public interface LearnerRepository extends JpaRepository<Learner, Integer>{
-    Learner findByName(String name);
+public interface CohortRepository extends JpaRepository<Cohort,Long>{
 }
