@@ -1,5 +1,6 @@
 package com.learnermanagement.LearnerManagementSystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class LearnerManagementService {
         return learnerRepository.findAll();
     }
 
-    public Learner fetchLearnerById(int id) throws LearnerNotFoundException {
+    public Learner fetchLearnerById(Long id) throws LearnerNotFoundException {
         Optional<Learner> optionalLearner = learnerRepository.findById(id);
         if(optionalLearner.isPresent()){
             return optionalLearner.get();
@@ -48,11 +49,37 @@ public class LearnerManagementService {
         return cohortRepository.findAll();
     }
 
-    public Cohort assignLearnersToCohort(int cohortId, Long learnerId) throws CohortNotFoundException {
+    public Cohort assignLearnersToCohort(Long cohortId, Long learnerId) throws CohortNotFoundException {
         Optional<Cohort> optionalCohort = cohortRepository.findById(cohortId);
         if(!optionalCohort.isPresent()){
             throw new CohortNotFoundException("cohort not found with id"+cohortId);
         }
-        Optional<Learner> optionalLearner = lear
+        Optional<Learner> optionalLearner = learnerRepository.findById(learnerId);
+        if(!optionalLearner.isPresent()){
+            throw new CohortNotFoundException("learner not found with id"+learnerId);
+        }
+
+        Cohort cohort = optionalCohort.get();
+        Learner learner = optionalLearner.get();
+        cohort.getLearners().add(learner);
+        return cohortRepository.save(cohort);
+    }
+    public Cohort assignAndCreateLearnersToCohort(Long cohortId, List<Learner> learners) throws CohortNotFoundException, LearnerNotFoundException {
+        Optional<Cohort> optionalCohort = cohortRepository.findById(cohortId);
+        if(!optionalCohort.isPresent()){
+            throw new CohortNotFoundException("cohort not found with id"+cohortId);
+        }
+        Cohort cohort = optionalCohort.get();
+        List<Learner> newLearners = new ArrayList<>();
+        for(Learner learner : learners){
+            Optional<Learner> optionalLearner = learnerRepository.findByEmail(learner.getEmail());
+            if(optionalLearner.isPresent()){
+                cohort.getLearners().add(optionalLearner.get());
+            } else {
+                newLearners.add(learner);
+            }
+        }
+        cohort.getLearners().addAll(newLearners);
+        return cohortRepository.save(cohort);
     }
 }

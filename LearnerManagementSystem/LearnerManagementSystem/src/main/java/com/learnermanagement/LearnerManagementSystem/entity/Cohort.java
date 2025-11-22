@@ -2,11 +2,13 @@ package com.learnermanagement.LearnerManagementSystem.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Cohort {
@@ -16,8 +18,10 @@ public class Cohort {
     private Long id;
     private String cohortName;
     private String cohortDescription;
-    @ManyToMany
+    @ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE   })
     private List<Learner> learners;
+    @ManyToOne
+    private Course course;  
     public Cohort(){
 
     }
@@ -26,7 +30,9 @@ public class Cohort {
         this.cohortName = cohortName;
         this.learners = learners;
     }
-
+    public Long getId() {
+        return id;
+    }
     public String getCohortName() {
         return cohortName;
     }
@@ -45,5 +51,10 @@ public class Cohort {
     public void setLearners(List<Learner> learners) {
         this.learners = learners;
     }
-    
+    public Course getCourse() {
+        return course;
+    }
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }
