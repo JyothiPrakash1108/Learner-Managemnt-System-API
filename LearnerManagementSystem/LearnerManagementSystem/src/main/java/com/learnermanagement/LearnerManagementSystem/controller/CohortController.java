@@ -2,6 +2,7 @@ package com.learnermanagement.LearnerManagementSystem.controller;
 
 import java.util.List;
 
+import com.learnermanagement.LearnerManagementSystem.dto.CohortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,7 +23,7 @@ public class CohortController {
     @Autowired
     private LearnerManagementService learnerManagementService;
     @PostMapping("/cohorts")
-    public Cohort createCohort(@RequestBody Cohort cohort){
+    public CohortDTO createCohort(@RequestBody Cohort cohort){
         return learnerManagementService.saveCohort(cohort);
     }
     @GetMapping("/cohorts")

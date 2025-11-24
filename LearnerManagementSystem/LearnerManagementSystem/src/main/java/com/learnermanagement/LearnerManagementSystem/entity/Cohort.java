@@ -1,5 +1,6 @@
 package com.learnermanagement.LearnerManagementSystem.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -19,7 +20,7 @@ public class Cohort {
     private String cohortName;
     private String cohortDescription;
     @ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE   })
-    private List<Learner> learners;
+    private List<Learner> learners = new ArrayList<>();
     @ManyToOne
     private Course course;  
     public Cohort(){

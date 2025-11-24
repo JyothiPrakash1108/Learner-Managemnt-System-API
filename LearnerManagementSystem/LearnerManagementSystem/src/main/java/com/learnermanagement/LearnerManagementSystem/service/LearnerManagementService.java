@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.learnermanagement.LearnerManagementSystem.dto.CohortDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import com.learnermanagement.LearnerManagementSystem.exception.CohortNotFoundExc
 import com.learnermanagement.LearnerManagementSystem.exception.LearnerNotFoundException;
 import com.learnermanagement.LearnerManagementSystem.repository.CohortRepository;
 import com.learnermanagement.LearnerManagementSystem.repository.LearnerRepository;
+
+import static com.learnermanagement.LearnerManagementSystem.mapper.CohortMapper.toCohortDTO;
 
 @Service
 public class LearnerManagementService {
@@ -41,9 +44,7 @@ public class LearnerManagementService {
          return learnerRepository.findByName(name);
     }
 
-    public Cohort saveCohort(Cohort cohort) {
-        return cohortRepository.save(cohort);
-    }
+
 
     public List<Cohort> getAllCohorts(){
         return cohortRepository.findAll();
@@ -81,5 +82,9 @@ public class LearnerManagementService {
         }
         cohort.getLearners().addAll(newLearners);
         return cohortRepository.save(cohort);
+    }
+
+    public CohortDTO saveCohort(Cohort cohort) {
+        return toCohortDTO(cohortRepository.save(cohort));
     }
 }
