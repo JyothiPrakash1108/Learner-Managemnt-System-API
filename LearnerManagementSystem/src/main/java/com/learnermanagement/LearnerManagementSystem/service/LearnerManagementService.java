@@ -47,6 +47,7 @@ public class LearnerManagementService {
         }
         throw new LearnerNotFoundException("learner not found with ID "+ learnerId);
     }
+    
     public Learner fetchLearnerByName(String name){
          return learnerRepository.findByName(name);
     }

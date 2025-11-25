@@ -49,7 +49,7 @@ public class CourseController {
     public CourseDTO assignCohortstoCourses(@PathVariable Long id, @RequestBody List<Long> cohortIds) throws CohortNotFoundException, CourseNotFoundException {
         return courseService.assignCohortsTOCourses(id,cohortIds);
     }
-    @PostMapping("/courses/{id}/cohorts")
+    @GetMapping("/courses/{id}/cohorts")
     public List<CohortDTO> getCohortsInCourse(@PathVariable Long id) throws CohortNotFoundException, CourseNotFoundException {
         List<Cohort> cohorts =  courseService.getCohortsInCourse(id);
         return toCohortDTOs(cohorts);
