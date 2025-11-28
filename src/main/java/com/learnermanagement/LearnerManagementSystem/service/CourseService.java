@@ -71,4 +71,5 @@ public class CourseService {
         List<Cohort> cohorts = course.getCohorts();
         return cohorts;
     }
+
 }
