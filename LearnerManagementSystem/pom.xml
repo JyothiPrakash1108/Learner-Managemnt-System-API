@@ -61,12 +61,17 @@
 		</dependency>
 	</dependencies>
 
+<<<<<<< HEAD
 <build>
+=======
+	<build>
+>>>>>>> fe99840de0a1cc86501a349676a2aff64b35115a
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<<<<<<< HEAD
 		
         <plugin>
             <groupId>org.jacoco</groupId>
@@ -89,5 +94,9 @@
         </plugin>
     </plugins>
 </build>
+=======
+		</plugins>
+	</build>
+>>>>>>> fe99840de0a1cc86501a349676a2aff64b35115a
 
 </project>
