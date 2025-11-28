@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LearnerMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">LearnerManagementSystem</a> &gt; <a href="index.source.html" class="el_package">com.learnermanagement.LearnerManagementSystem.mapper</a> &gt; <span class="el_source">LearnerMapper.java</span></div><h1>LearnerMapper.java</h1><pre class="source lang-java linenums">package com.learnermanagement.LearnerManagementSystem.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.learnermanagement.LearnerManagementSystem.dto.CohortDTO;
+import com.learnermanagement.LearnerManagementSystem.dto.LearnerDTO;
+import com.learnermanagement.LearnerManagementSystem.entity.Cohort;
+import com.learnermanagement.LearnerManagementSystem.entity.Learner;
+
+<span class="nc" id="L11">public class LearnerMapper {</span>
+    public static LearnerDTO toLearnerDTO(Learner learner){
+<span class="nc" id="L13">        LearnerDTO learnerDTO = new LearnerDTO();</span>
+<span class="nc" id="L14">        learnerDTO.setId(learner.getId());</span>
+<span class="nc" id="L15">        learnerDTO.setName(learner.getName());  </span>
+<span class="nc" id="L16">        learnerDTO.setEmail(learner.getEmail());</span>
+<span class="nc" id="L17">        learnerDTO.setLinkedInProfile(learner.getLinkedInProfile());</span>
+<span class="nc" id="L18">        List&lt;CohortDTO&gt; cohortDTOs = new ArrayList&lt;&gt;();</span>
+       /*  for(Cohort cohort : learner.getCohorts()){
+            CohortDTO cohortDTO = new CohortDTO();
+            cohortDTO.setId(cohort.getId());
+            cohortDTO.setCohortName(cohort.getCohortName());
+            cohortDTO.setCohortDescription(cohort.getCohortDescription());
+            cohortDTO.setLearners(null);
+            cohortDTOs.add(cohortDTO);
+        }*/
+<span class="nc" id="L27">        learnerDTO.setCohorts(cohortDTOs);</span>
+<span class="nc" id="L28">        return learnerDTO;</span>
+    }
+     public static LearnerDTO toLearnerDTOWithCohorts(Learner learner){
+<span class="nc" id="L31">        LearnerDTO learnerDTO = new LearnerDTO();</span>
+<span class="nc" id="L32">        learnerDTO.setId(learner.getId());</span>
+<span class="nc" id="L33">        learnerDTO.setName(learner.getName());  </span>
+<span class="nc" id="L34">        learnerDTO.setEmail(learner.getEmail());</span>
+<span class="nc" id="L35">        learnerDTO.setLinkedInProfile(learner.getLinkedInProfile());</span>
+<span class="nc" id="L36">        List&lt;CohortDTO&gt; cohortDTOs = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        for(Cohort cohort : learner.getCohorts()){</span>
+<span class="nc" id="L38">            CohortDTO cohortDTO = new CohortDTO();</span>
+<span class="nc" id="L39">            cohortDTO.setId(cohort.getId());</span>
+<span class="nc" id="L40">            cohortDTO.setCohortName(cohort.getCohortName());</span>
+<span class="nc" id="L41">            cohortDTO.setCohortDescription(cohort.getCohortDescription());</span>
+<span class="nc" id="L42">            cohortDTO.setLearners(new ArrayList&lt;&gt;() );</span>
+<span class="nc" id="L43">            cohortDTOs.add(cohortDTO);</span>
+        }
+<span class="nc" id="L45">        learnerDTO.setCohorts(cohortDTOs);</span>
+<span class="nc" id="L46">        return learnerDTO;</span>
+    }
+    public static List&lt;LearnerDTO&gt; toLearnerDTOs(List&lt;Learner&gt; learners){
+<span class="nc" id="L49">       List&lt;LearnerDTO&gt; learnerDTOs = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">       for(Learner learner : learners){</span>
+<span class="nc" id="L51">            LearnerDTO learnerDTO = new LearnerDTO();</span>
+<span class="nc" id="L52">            learnerDTO.setId(learner.getId());</span>
+<span class="nc" id="L53">            learnerDTO.setName(learner.getName());  </span>
+<span class="nc" id="L54">            learnerDTO.setEmail(learner.getEmail());</span>
+<span class="nc" id="L55">            List&lt;CohortDTO&gt; cohortDTOs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L56">            learnerDTO.setCohorts(cohortDTOs);</span>
+<span class="nc" id="L57">            learnerDTOs.add(learnerDTO);</span>
+        }
+
+<span class="nc" id="L60">        return learnerDTOs;</span>
+    }
+    public static List&lt;LearnerDTO&gt; toLearnerDTOsWithCohorts(List&lt;Learner&gt; learners){
+<span class="nc" id="L63">       List&lt;LearnerDTO&gt; learnerDTOs = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">       for(Learner learner : learners){</span>
+<span class="nc" id="L65">            LearnerDTO learnerDTO = new LearnerDTO();</span>
+<span class="nc" id="L66">            learnerDTO.setId(learner.getId());</span>
+<span class="nc" id="L67">            learnerDTO.setName(learner.getName());  </span>
+<span class="nc" id="L68">            learnerDTO.setEmail(learner.getEmail());</span>
+<span class="nc" id="L69">            List&lt;CohortDTO&gt; cohortDTOs = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">           for(Cohort cohort : learner.getCohorts()){</span>
+<span class="nc" id="L71">                CohortDTO cohortDTO = new CohortDTO();</span>
+<span class="nc" id="L72">                cohortDTO.setId(cohort.getId());</span>
+<span class="nc" id="L73">                cohortDTO.setCohortName(cohort.getCohortName());</span>
+<span class="nc" id="L74">                cohortDTO.setCohortDescription(cohort.getCohortDescription());</span>
+<span class="nc" id="L75">                cohortDTO.setLearners(new ArrayList&lt;&gt;());</span>
+<span class="nc" id="L76">                cohortDTOs.add(cohortDTO);</span>
+            }
+<span class="nc" id="L78">            learnerDTO.setCohorts(cohortDTOs);</span>
+<span class="nc" id="L79">            learnerDTOs.add(learnerDTO);</span>
+        }
+
+<span class="nc" id="L82">        return learnerDTOs;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
